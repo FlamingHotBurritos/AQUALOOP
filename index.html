@@ -82,6 +82,7 @@ document.getElementById("Turbidity").innerHTML = String(turbidity) + " NTU";
    var ph = 7+((2.5-voltage_ph)/0.18);
  document.getElementById("pH").innerHTML = String(ph).toFixed(2);
     }
+}
 // init the pin
 function setup(){
     if(cpf){
@@ -89,6 +90,7 @@ function setup(){
         cpf.setPinMode('["resetPin"],["setPinMode", "analog", 1, "INPUT"]');
         cpf.setPinMode('["resetPin"],["setPinMode", "analog", 2, "INPUT"]');   
     }
+	
 }
 
 setup();
