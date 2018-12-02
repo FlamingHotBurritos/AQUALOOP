@@ -38,7 +38,7 @@
 			<p id="date_time"></p>
             <script type="text/javascript">
             	window.onload = date_time('date_time');
-var a0_value;
+var a0;
 var voltage_conductivity;
 var resistance;
 var resistivity;
@@ -53,7 +53,7 @@ var ph;
 function myFunction() {
     if(cpf){
         //get the value of pin A0
-        a0_value = cpf.get("a0");
+        a0 = cpf.get("a0");
         voltage_conductivity = (a0/1023)*5;
         resistance = ((5*10000)/voltage_conductivity)-10000;
         resistivity = resistance*0.0002/0.01;
@@ -93,8 +93,7 @@ function setup(){
 }
 setup();
         	</script>
-			<span class="byline">Press the button to show the sensor values</span>
-
+<span class="byline">Press the button to show the sensor values</span>
 		</div>
 		<table style="width:100%">
 				<tr>
