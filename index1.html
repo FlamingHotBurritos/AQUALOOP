@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>AQUALOOP</title>
+<script type="text/javascript" src="date_time.js"></script>
+<script type="text/javascript" src="Sensors.js"></script>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="http://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet" />
+<link href="default.css" rel="stylesheet" type="text/css" media="all" />
+<link href="fonts.css" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript">window.onload = cpf('cpf')</script>
+<!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+
+</head>
+<body>
+<div id="header-wrapper">
+	<div id="header" class="container">
+
+		<div id="logo">
+		
+		</div>
+
+		<div id="menu">
+
+		</div>
+
+	</div>
+
+	<div id="banner" class="container">
+		<div class="title">
+			<h2>Aqualoop</h2>
+			<span class="byline">Marine Surface Water Data Collection Buoy System</span>
+		</div>
+	</div>
+</div>
+<div id="wrapper">
+	<div id="three-column" class="container">
+		<div class="title">
+			<h2>Sensor Data</h2>
+			<p id="date_time"></p>
+            <script type="text/javascript">
+            	window.onload = date_time('date_time');
+var a0_value;
+var voltage_conductivity;
+var resistance;
+var resistivity;
+var conductivity;
+var TDS;
+function myFunction() {
+    if(cpf){
+        //get the value of pin A0
+        a0_value = cpf.get("a0");
+        voltage_conductivity = (a0/1023)*5;
+        resistance = ((5*10000)/voltage_conductivity)-10000;
+        resistivity = resistance*0.0002/0.01;
+        conductivity = (1/resistivity)*1000;
+        TDS = conductivity*10*0.67;
+        salinity = (Math.pow((conductivity/100), 1.0878))*0.4665;8
+        document.getElementById("TDS").innerHTML = String(TDS) + " ppm \n";
+        document.getElementById("Conductivity").innerHTML = String(conductivity) + " mSiemens/m \n";
+        document.getElementById("Salinity").innerHTML = String(salinity)+ " N";
+        
+
+    }
+}
+var a1 = cpf.get("a1");
+   var voltage_turbidity = (a1/1023)*5;
+   var turbidity = (5742.3*voltage_turbidity)-(1120.4*(voltage_turbidity*voltage_turbidity))-4352.9;
+   if (voltage_turbidity >= 4.20){
+    turbidity = 0;
+   }
+   if (turbidity < 0){
+    turbidity = 0;
+   }
+document.getElementById("Turbidity").innerHTML = String(turbidity) + " NTU";
+
+
+   var a2 = cpf.get("a2");
+   var voltage_ph = (a2/1023)*5;
+   var ph = 7+((2.5-voltage_ph)/0.18);
+ document.getElementById("pH").innerHTML = String(ph).toFixed(2);
+// init the pin
+function setup(){
+    if(cpf){
+        cpf.setPinMode('["resetPin"],["setPinMode", "analog", 0, "INPUT"]');
+        cpf.setPinMode('["resetPin"],["setPinMode", "analog", 1, "INPUT"]');
+        cpf.setPinMode('["resetPin"],["setPinMode", "analog", 2, "INPUT"]');   
+    }
+}
+
+setup();
+
+        	</script>
+			<span class="byline">Press the button to show the sensor values</span>
+
+		</div>
+		<table style="width:100%">
+				<tr>
+					<td colspan="6">
+						<button class="button button-alt" onclick="myFunction()"><span> Sensor Value </span> </button>
+					</td>
+				</tr>
+		<tr>
+
+		<td>	
+		<div class="box1">
+			<div class="button button-alt"><a>Temperature</div></a>
+		</div>
+		<br>
+		<br>
+		<p id="Temp"></p>
+
+		</td>
+
+
+		<td>	
+		<div class="box2">
+			<div class="button button-alt"><a>pH</div></a>
+		</div>
+		<br>
+		<br>
+		<p id="pH"></p>
+
+		</td>
+
+
+		<td>
+		<div class="box3">
+			<div class="button button-alt"><a>Turbidity</div></a>
+		</div>
+		<br>
+		<br>
+		<p id="Turbidity"></p>
+
+		</td>
+
+		<td>	
+		<div class="box4">
+			<div class="button button-alt"><a>Conductivity</div></a>
+		</div>
+		<br>
+		<br>
+		<p id="Conductivity"></p>
+
+		</td>
+
+
+		<td>	
+		<div class="box5">
+			<div class="button button-alt"><a>Salinity</div></a>
+		</div>
+		<br>
+		<br>
+		<p id="Salinity"></p>
+
+		</td>
+
+
+		<td>
+		<div class="box6">
+			<div class="button button-alt"p><a>TDS</div></a>
+		</div>
+		<br>
+		<br>
+		<p id="TDS"></p>
+
+		</td>
+
+		</tr>
+
+
+	</table>
+	</div>
+</div>
+<div id="welcome">
+	<div class="container">
+		<div class="title">
+
+
+
+
+
+
+
+			
+			
+		</div>
+	</div>
+</div>
+<div id="copyright" class="container">
+	<p>&copy; Untitled. All rights reserved. | Photos by <a href="http://fotogrph.com/">Chio Ritualo</a> | Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
+</div>
+
+</body>
+</html>
