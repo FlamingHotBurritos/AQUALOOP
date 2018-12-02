@@ -80,7 +80,7 @@ document.getElementById("Turbidity").innerHTML = String(turbidity) + " NTU";
    var a2 = cpf.get("a2");
    var voltage_ph = (a2/1023)*5;
    var ph = 7+((2.5-voltage_ph)/0.18);
- document.getElementById("pH").innerHTML = String(ph).toFixed(2);
+ document.getElementById("pH").innerHTML = String(ph);
     }
 }
 // init the pin
