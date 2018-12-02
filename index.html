@@ -44,6 +44,12 @@ var resistance;
 var resistivity;
 var conductivity;
 var TDS;
+var a1;
+var voltage_turbidity;
+var turbidity;
+var a2;
+var voltage_ph;
+var ph;
 function myFunction() {
     if(cpf){
         //get the value of pin A0
@@ -57,14 +63,11 @@ function myFunction() {
         document.getElementById("TDS").innerHTML = String(TDS) + " ppm \n";
         document.getElementById("Conductivity").innerHTML = String(conductivity) + " mSiemens/m \n";
         document.getElementById("Salinity").innerHTML = String(salinity)+ " N";
-        
-
-    }
-}
-var a1 = cpf.get("a1");
-   var voltage_turbidity = (a1/1023)*5;
-   var turbidity = (5742.3*voltage_turbidity)-(1120.4*(voltage_turbidity*voltage_turbidity))-4352.9;
-   if (voltage_turbidity >= 4.20){
+    
+a1 = cpf.get("a1");
+   voltage_turbidity = (a1/1023)*5;
+   turbidity = (5742.3*voltage_turbidity)-(1120.4*(voltage_turbidity*voltage_turbidity))-4352.9;
+   (voltage_turbidity >= 4.20){
     turbidity = 0;
    }
    if (turbidity < 0){
@@ -77,6 +80,7 @@ document.getElementById("Turbidity").innerHTML = String(turbidity) + " NTU";
    var voltage_ph = (a2/1023)*5;
    var ph = 7+((2.5-voltage_ph)/0.18);
  document.getElementById("pH").innerHTML = String(ph).toFixed(2);
+    }
 // init the pin
 function setup(){
     if(cpf){
