@@ -72,7 +72,7 @@ function myFunction() {
     turbidity = 0;
    }
    if (turbidity < 0){
-    turbidity = 0;
+    turbidity = abs(turbidity);
    }
 document.getElementById("Turbidity").innerHTML = String(turbidity) + " NTU";
 
