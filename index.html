@@ -68,13 +68,10 @@ function myFunction() {
     
    var a1 = cpf.get("a1");
    voltage_turbidity = (a1/1023)*5;
-   turbidity = (5742.3*voltage_turbidity)-(1120.4*(voltage_turbidity*voltage_turbidity))-4352.9;
+   turbidity = Math.abs((5742.3*voltage_turbidity)-(1120.4*(voltage_turbidity*voltage_turbidity))-4352.9);
    if (voltage_turbidity >= 4.20)
 	    {
     turbidity = 0;
-   }
-   if (turbidity < 0){
-    turbidity = Math.abs(turbidity);
    }
 document.getElementById("Turbidity").innerHTML = String(turbidity) + " NTU";
 
